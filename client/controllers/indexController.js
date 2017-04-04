@@ -38,6 +38,10 @@ app.controller('indexController', function($scope, $location, indexFactory){
     $scope.isValid = function(){
         console.log("does this actually work");
     };
+    $scope.clearData = function(){
+        $scope.newRequest.body[0].datapoints = ["null"];
+        $scope.requestPreview = JSON.stringify($scope.newRequest, null, 2);
+    };
     $scope.ingestData = function(){
         $scope.socketStatus.status = "Ingesting " + Date.now() + "\n" + $scope.socketStatus.status;
         console.log($scope.server);
