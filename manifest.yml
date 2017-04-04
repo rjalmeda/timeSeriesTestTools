@@ -1,0 +1,5 @@
+applications:
+  - name: Predix-Timeseries-ingest-rjAzuqua
+    buildpack: predix_openresty_buildpack
+    memory: 64M
+    stack: cflinuxfs2

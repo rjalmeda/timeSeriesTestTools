@@ -1,0 +1,26 @@
+<h3>Index Partial</h3>
+<div class="requestBuilder">
+    <h3>Request Preview</h3>
+    <textarea class="requestBody" style="min-width: 300px; min-height: 300px;" disabled ng-model="requestPreview"></textarea>
+    <div>
+        <form ng-submit="isValid()">
+            <label>Tag</label><input type="text" placeholder="name/tag" ng-model="reqBody.name" ng-change="updateBody()"><br>
+            <label>Data Value</label><input type="text" placeholder="value" ng-model="reqBody.value" ng-change="updateBody()"><br>
+            <lavel>Quality</lavel><input type="number" min=0 max=3 ng-model="reqBody.quality" ng-change="updateBody()"><br>
+            <label>Attributes</label><textarea ng-model="reqBody.attributes" ng-change="updateBody()"></textarea><br>
+            <button type="submit">Check Valid</button>
+        </form>
+    </div>
+</div>
+<div class="serverInfo">
+    <h3>Time Series Socket Server</h3>
+    <label>Time Series Instance URI</label><input type="text" ng-model="server.uri"><br>
+    <label>Zone ID</label><input type="text" ng-model="server.predixZoneId"><br>
+    <label>Access Token</label><input type="text" ng-model="server.access_token"><br>
+    <button ng-click="ingestData()">Ingest Data</button>
+</div>
+<div class="statusWindow">
+    <h3>Status Window</h3>
+    <textarea style="width:600px; height:200px; resize: none;" ng-model="socketStatus.status"></textarea>
+    <button ng-click="clearLog()">Clear Log</button>
+</div>
