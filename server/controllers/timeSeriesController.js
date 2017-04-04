@@ -20,6 +20,7 @@ var WebSocketClient = require('websocket').client;
 module.exports = (function(){
     return {
         ingestData: function(req,res){
+            var statusCode = 0;
             var headers = {
                 "Authorization": "Bearer "+req.body.server.access_token,
                 "Predix-Zone-Id": req.body.server.predixZoneId,
@@ -35,7 +36,6 @@ module.exports = (function(){
             console.log(req.body.body);
             client.on('connect', function(connection){
                 console.log("WebSocket now Connected");
-                connection.sendUTF(newData);
                 connection.on('error', function(err){
                     console.log(err.toString());
                 });
@@ -45,11 +45,16 @@ module.exports = (function(){
                 connection.on('message', function(message){
                     if(message.type === 'utf8'){
                         console.log("Received: "+ message.utf8Data);
+                        var messageData = JSON.parse(message.utf8Data);
+                        console.log(messageData.statusCode);
+                        statusCode = messageData.statusCode;
+                        connection.close();
+                        return res.json({message: "WebSocket StatusCode: "+statusCode, req:req.body, headers: headers})
                     };
                 });
+                connection.sendUTF(newData);
             });
-            client.connect(req.body.server.uri, null, null, headers, null)
-            return res.json({message: "yay", req:req.body, headers: headers})
+            client.connect(req.body.server.uri, null, null, headers, null);
         }
     }
 })();
