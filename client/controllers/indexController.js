@@ -44,13 +44,16 @@ app.controller('indexController', function($scope, $location, indexFactory){
     };
     $scope.ingestData = function(){
         $scope.socketStatus.status = "Ingesting " + Date.now() + "\n" + $scope.socketStatus.status;
-        console.log($scope.server);
+//        console.log($scope.server);
         var package = {
             server: $scope.server,
             body: $scope.newRequest
         }
         indexFactory.ingestData(package, function(data){
             console.log(data);
+            for (var i=0; i<data.data.messages.length; i++){
+                $scope.socketStatus.status = data.data.messages[i] + "\n" + $scope.socketStatus.status;
+            };
         })
     };
     $scope.clearLog = function(){

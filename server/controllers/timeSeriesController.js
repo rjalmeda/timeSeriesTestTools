@@ -21,6 +21,7 @@ module.exports = (function(){
     return {
         ingestData: function(req,res){
             var statusCode = 0;
+            var messages = [];
             var headers = {
                 "Authorization": "Bearer "+req.body.server.access_token,
                 "Predix-Zone-Id": req.body.server.predixZoneId,
@@ -28,7 +29,7 @@ module.exports = (function(){
                 "Origin": "https://predix-timeseries-ingest-rjazuqua.run.aws-usw02-pr.ice.predix.io"
             };
             var newData = JSON.stringify(req.body.body);
-            console.log(headers);
+//            console.log(headers);
             var client = new WebSocketClient();
             client.on('connectFailed', function(err){
                 console.log(err.toString());
@@ -36,20 +37,23 @@ module.exports = (function(){
             console.log(req.body.body);
             client.on('connect', function(connection){
                 console.log("WebSocket now Connected");
+                messages.push("WebSocket now Connected");
                 connection.on('error', function(err){
                     console.log(err.toString());
                 });
                 connection.on('close', function(){
                     console.log('WebSocket now Closed');
+                    messages.push("WebSocket now Closed");
+                    return res.json({statusCode: statusCode, req:req.body, headers: headers, messages: messages})
                 });
                 connection.on('message', function(message){
                     if(message.type === 'utf8'){
                         console.log("Received: "+ message.utf8Data);
+                        messages.push("Received: "+ message.utf8Data);
                         var messageData = JSON.parse(message.utf8Data);
-                        console.log(messageData.statusCode);
+//                        console.log(messageData.statusCode);
                         statusCode = messageData.statusCode;
                         connection.close();
-                        return res.json({message: "WebSocket StatusCode: "+statusCode, req:req.body, headers: headers})
                     };
                 });
                 connection.sendUTF(newData);

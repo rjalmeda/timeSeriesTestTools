@@ -1,13 +1,16 @@
 <h3>Index Partial</h3>
-<div class="requestBuilder">
-    <h3>Request Preview</h3>
-    <textarea class="requestBody" style="min-width: 300px; min-height: 300px;" disabled ng-model="requestPreview"></textarea>
-    <div>
+
+<div class="requestContainer">
+    <div class="requestBuilder" style="display:inline-block;">
+        <h3>Request Preview</h3>
+        <textarea class="requestBody" style="min-width: 300px; min-height: 300px;" disabled ng-model="requestPreview"></textarea>
+    </div>
+    <div style="display:inline-block;vertical-align:top;margin-top: 60px;">
         <form ng-submit="addData()">
-            <label>Tag</label><input type="text" placeholder="name/tag" ng-model="reqBody.name" ng-change="updateBody()"><br>
-            <label>Data Value</label><input type="text" placeholder="value" ng-model="reqBody.value" ng-change="updateBody()"><br>
-            <lavel>Quality</lavel><input type="number" min=0 max=3 ng-model="reqBody.quality" ng-change="updateBody()"><br>
-            <label>Attributes</label><textarea ng-model="reqBody.attributes" ng-change="updateBody()"></textarea><br>
+            <label>Tag: </label><input type="text" placeholder="name/tag" ng-model="reqBody.name" ng-change="updateBody()"><br>
+            <label>Data Value: </label><input type="text" placeholder="value" ng-model="reqBody.value" ng-change="updateBody()"><br>
+            <lavel>Quality: </lavel><input type="number" min=0 max=3 ng-model="reqBody.quality" ng-change="updateBody()"><br>
+            <label>Attributes; </label><textarea ng-model="reqBody.attributes" ng-change="updateBody()"></textarea><br>
             <button type="submit">Add Data</button><button type="button" ng-click="clearData()">Clear Data</button>
         </form>
     </div>
