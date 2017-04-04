@@ -1,0 +1,34 @@
+<h3><a href="#!/index">Ingest</a> | Query</h3>
+
+<div class="resultsContainer" style="width:800px;height:420px;">
+    <div class="resultsWindow" style="width:450px;height:350px;display:inline-block;">
+        <h4>Results</h4>
+        <textarea style="width:400px;height:300px;" ng-model="render.results"></textarea>
+    </div>
+    <div class="authWindow" style="width:220px;height:350px;display:inline-block;">
+        <h4>Auth</h4>
+        <textarea style="width:200px;height:300px;" ng-model="render.auth"></textarea>
+    </div>
+</div>
+<div class="controlsContainer" style="margin-top:25px;">
+    <div class="controls">
+        <h4>Tag Search</h4>
+        <form ng-submit="queryTags()">
+            <label>Tags: </label><input type="text" ng-model="query.tags">
+            <button type="submit">Query</button><button type="button" ng-click="getAllTags()">Get All Tags</button>
+        </form>
+    </div>
+</div>
+<div class="authorization" style="margin-top:25px;">
+    <h4>Authorization</h4>
+    <div>
+        <form ng-submit="checkToken()">
+            <label>UAA: </label><input type="text" ng-model="auth.uaa"><br>
+            <label>Client ID: </label><input type="text" ng-model="auth.clientId"><br>
+            <label>Client Secret: </label><input type="text" ng-model="auth.clientSecret"><br>
+            <label>Instance URI: </label><input type="text" ng-model="auth.instanceUri"><br>
+            <label>Predix Zone ID: </label><input type="text" ng-model="auth.predixZoneId"><br>
+            <label>Access Token: </label><input type="text" ng-model="auth.access_token"><br>
+            <button type="submit">Check Token</button><button type="button" ng-click="getNewToken()">Get New Token</button>
+    </div>
+</div>

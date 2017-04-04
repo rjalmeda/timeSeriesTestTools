@@ -5,6 +5,10 @@ app.config(function($routeProvider){
         templateUrl: '/partials/index.html',
         controller: "indexController"
     })
+    .when('/query', {
+        templateUrl: '/partials/query.html',
+        controller: 'queryController'
+    })
     .otherwise({
         redirectTo: '/index'
     })
