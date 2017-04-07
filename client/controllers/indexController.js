@@ -1,7 +1,7 @@
 app.controller('indexController', function($scope, $location, indexFactory){
     $scope.newRequest = {};
     $scope.newRequest.body = [];
-    $scope.newRequest.body[0] = {name: "", datapoints: ["null"]}; 
+    $scope.newRequest.body[0] = {name: "", datapoints: ["null"], attributes: {}}; 
     $scope.reqBody = {attributes: "{}"};
     $scope.socketStatus = {status:""};
     $scope.auth = {};
@@ -22,7 +22,7 @@ app.controller('indexController', function($scope, $location, indexFactory){
             $scope.reqBody.value = Number($scope.reqBody.value);
         };
         $scope.newRequest.messageId = unixTimeStamp;
-        $scope.newRequest.attributes = newAttributes;
+        $scope.newRequest.body[0].attributes = newAttributes;
         $scope.newRequest.body[0].name = $scope.reqBody.name;
         $scope.newRequest.body[0].datapoints[$scope.newRequest.body[0].datapoints.length-1] = [
             unixTimeStamp,
