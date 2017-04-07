@@ -13,17 +13,36 @@
             <label>Attributes; </label><textarea ng-model="reqBody.attributes" ng-change="updateBody()"></textarea><br>
             <button type="submit">Add Data</button><button type="button" ng-click="clearData()">Clear Data</button>
         </form>
+        <h4>Direct Import</h4>
+        <textarea ng-model="rawData.object"></textarea>
+        <button type="button" ng-click="importRawData()">Import Data</button>
+        <button type="button" ng-click="undoEdit()">Undo</button>
+        <button type="button" ng-click="resetData()">Reset Data</button>
     </div>
 </div>
-<div class="serverInfo">
-    <h3>Time Series Socket Server</h3>
-    <label>Time Series Instance URI</label><input type="text" ng-model="server.uri"><br>
-    <label>Zone ID</label><input type="text" ng-model="server.predixZoneId"><br>
-    <label>Access Token</label><input type="text" ng-model="server.access_token"><br>
-    <button ng-click="ingestData()">Ingest Data</button>
+<div class="authorization" style="margin-top:25px;width:850px;">
+    <h4>Authorization</h4>
+    <div style="display:inline;width:250px;">
+        <form>
+            <label>UAA: </label><input type="text" ng-model="auth.uaa"><br>
+            <label>Client ID: </label><input type="text" ng-model="auth.clientId"><br>
+            <label>Client Secret: </label><input type="text" ng-model="auth.clientSecret"><br>
+            <label>Instance URI: </label><input type="text" ng-model="auth.instanceUri"><br>
+            <label>Predix Zone ID: </label><input type="text" ng-model="auth.predixZoneId"><br>
+            <label>Access Token: </label><input type="text" ng-model="auth.access_token"><br>
+            <label>Websocket Uri: </label><input type="text" ng-model="auth.wsUri"><br>
+            <button type="submit" ng-click="checkToken()" disabled>Check Token</button><button type="button" ng-click="getNewToken()" disabled>Get New Token</button>
+    </div>
+    <div class="serverJson" style="display:inline;width:480px;">
+        <h3>Import Auth Blob</h3>
+        <textarea ng-model="authJSON.object"></textarea>
+        <button ng-click="importAuthJson()">Import Auth</button>
+    </div>
 </div>
+    
 <div class="statusWindow">
     <h3>Status Window</h3>
-    <textarea style="width:600px; height:200px; resize: none;" ng-model="socketStatus.status"></textarea>
+    <textarea style="width:600px; height:200px; resize: none;vertical-align:top;" ng-model="socketStatus.status"></textarea><br>
+    <button ng-click="ingestData()">Ingest Data</button>
     <button ng-click="clearLog()">Clear Log</button>
 </div>

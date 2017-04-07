@@ -20,7 +20,7 @@ app.factory('queryFactory', function($http){
                 "content-type": "application/json"
             }
         };
-        $http.get(query.auth.instanceUri+'/v1/').then(function(data){
+        $http.get(query.auth.instanceUri+'/v1/datapoints', config).then(function(data){
             callback(data)
         });
     }

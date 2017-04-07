@@ -23,10 +23,10 @@ module.exports = (function(){
             var statusCode = 0;
             var messages = [];
             var headers = {
-                "Authorization": "Bearer "+req.body.server.access_token,
-                "Predix-Zone-Id": req.body.server.predixZoneId,
-                "client_id": "time_client",
-                "Origin": "https://predix-timeseries-ingest-rjazuqua.run.aws-usw02-pr.ice.predix.io"
+                "Authorization": "Bearer "+req.body.auth.access_token,
+                "Predix-Zone-Id": req.body.auth.predixZoneId,
+                "client_id": req.body.auth.clientId,
+                "Origin": "https://localhost"
             };
             var newData = JSON.stringify(req.body.body);
 //            console.log(headers);
@@ -58,7 +58,7 @@ module.exports = (function(){
                 });
                 connection.sendUTF(newData);
             });
-            client.connect(req.body.server.uri, null, null, headers, null);
+            client.connect(req.body.auth.wsUri, null, null, headers, null);
         }
     }
 })();
