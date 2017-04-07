@@ -3,7 +3,8 @@
 <div class="resultsContainer" style="width:1200px;height:420px;">
     <div class="resultsWindow" style="width:450px;height:350px;display:inline-block;">
         <h4>Results</h4>
-        <textarea style="width:400px;height:300px;" ng-model="render.results" disabled></textarea>
+        <textarea style="width:400px;height:300px;" ng-model="render.results" disabled></textarea><br>
+        <button type="button" ng-click="submitQuery()">Query</button>
     </div>
     <div class="queryWindow" style="width:220px;height:350px;display:inline-block;">
         <h4>Query</h4>
@@ -11,7 +12,8 @@
     </div>
     <div class="queryImport" style="width:220px;height:350px;display:inline-block;">
         <h4>Import Query</h4>
-        <textarea style="width:200px;height:300px;" ng-model="render.queryImport"></textarea>
+        <textarea style="width:200px;height:300px;" ng-model="rawQuery.string"></textarea><br>
+        <button type="button" ng-click="importQuery()">Import Query</button>
     </div>
 </div>
 <div class="controlsContainer" style="margin-top:25px;">

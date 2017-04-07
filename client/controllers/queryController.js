@@ -2,16 +2,17 @@ app.controller('queryController', function($scope, $location, $http, queryFactor
     $scope.render = {results:"",auth:""};
     $scope.query = {};
     $scope.auth = {uaa:"",clientId:"", clientSecret:"", instanceUri:"", predixZoneId:""};
-    $scope.queryTags = function(){
+    $scope.submitQuery = function(){
         if(!$scope.query || !$scope.query.tags){
             return console.log("no tags dude");
         };
         var query = {
             auth: $scope.auth,
-            tags: $scope.query.tags
+            query: $scope.query
         };
-        queryFactory.queryTags(query, function(data){
-            console.log(data);
+        queryFactory.submitQuery(query, function(data){
+            console.log(data.data);
+            $scope.render.results = JSON.stringify(data.data);
         });
     };
     $scope.getAllTags = function(){
@@ -38,4 +39,8 @@ app.controller('queryController', function($scope, $location, $http, queryFactor
             $scope.auth[key] = newAuth[key];
         }
     };
+    $scope.importQuery = function(){
+        $scope.query = JSON.parse($scope.rawQuery.string);
+        $scope.render.query = JSON.stringify($scope.query, null, 2);
+    }
 })

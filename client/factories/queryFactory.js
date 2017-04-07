@@ -12,7 +12,7 @@ app.factory('queryFactory', function($http){
             callback(data);
         });
     };
-    factory.queryTags = function(query, callback){
+    factory.submitQuery = function(query, callback){
         var config = {
             headers: {
                 Authorization: "Bearer "+query.auth.access_token,
@@ -20,7 +20,7 @@ app.factory('queryFactory', function($http){
                 "content-type": "application/json"
             }
         };
-        $http.get(query.auth.instanceUri+'/v1/datapoints', config).then(function(data){
+        $http.post(query.auth.instanceUri+'/v1/datapoints', query.query, config).then(function(data){
             callback(data)
         });
     }
