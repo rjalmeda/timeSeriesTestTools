@@ -12,7 +12,7 @@ app.controller('queryController', function($scope, $location, $http, queryFactor
         };
         queryFactory.submitQuery(query, function(data){
             console.log(data.data);
-            $scope.render.results = JSON.stringify(data.data);
+            $scope.render.results = JSON.stringify(data.data, null, 2);
         });
     };
     $scope.getAllTags = function(){
@@ -42,5 +42,15 @@ app.controller('queryController', function($scope, $location, $http, queryFactor
     $scope.importQuery = function(){
         $scope.query = JSON.parse($scope.rawQuery.string);
         $scope.render.query = JSON.stringify($scope.query, null, 2);
+    };
+    $scope.clearQueryResults = function(){
+        $scope.render.results = '';
+    };
+    $scope.getAggregations = function(){
+        console.log("getting Aggregations");
+        queryFactory.getAggregations($scope.auth, function(data){
+            console.log(data);
+            $scope.render.aggregations = JSON.stringify(data.data.results, null, 2);
+        })
     }
 })

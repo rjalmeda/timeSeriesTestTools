@@ -23,6 +23,20 @@ app.factory('queryFactory', function($http){
         $http.post(query.auth.instanceUri+'/v1/datapoints', query.query, config).then(function(data){
             callback(data)
         });
-    }
+    };
+    
+    factory.getAggregations = function(auth, callback){
+        var config = {
+            headers: {
+                Authorization: "Bearer "+auth.access_token,
+                "Predix-Zone-Id": auth.predixZoneId,
+                "content-type": "application/json"
+            }
+        };
+        $http.get(auth.instanceUri+'/v1/aggregations', config).then(function(data){
+            callback(data);
+        });
+    };
+    
     return factory;
 })

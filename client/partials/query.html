@@ -1,10 +1,10 @@
 <h3><a href="#!/index">Ingest</a> | Query</h3>
 
 <div class="resultsContainer" style="width:1200px;height:420px;">
-    <div class="resultsWindow" style="width:450px;height:350px;display:inline-block;">
+    <div class="resultsWindow" style="min-width:450px;min-height:350px;display:inline-block;">
         <h4>Results</h4>
-        <textarea style="width:400px;height:300px;" ng-model="render.results" disabled></textarea><br>
-        <button type="button" ng-click="submitQuery()">Query</button>
+        <textarea style="min-width:400px;min-height:300px;" ng-model="render.results" disabled></textarea><br>
+        <button type="button" ng-click="submitQuery()">Query</button><button type="button" ng-click="clearQueryResults()">Clear</button>
     </div>
     <div class="queryWindow" style="width:220px;height:350px;display:inline-block;">
         <h4>Query</h4>
@@ -17,12 +17,17 @@
     </div>
 </div>
 <div class="controlsContainer" style="margin-top:25px;">
-    <div class="tags">
+    <div class="tags" style="margin:10px;">
         <h4>Tag Search</h4>
         <form ng-submit="queryTags()">
-            <label style="vertical-align:top;">Tags: </label><textarea ng-model="render.tags" style="min-height:250px;min-width:250px;" disabled></textarea>
-            <button type="button" ng-click="getAllTags()" style="vertical-align:top;">Get All Tags</button>
+            <label style="vertical-align:top;display:block;">Tags: </label><textarea ng-model="render.tags" style="min-height:250px;min-width:250px;display:block;" disabled></textarea>
+            <button type="button" ng-click="getAllTags()" style="vertical-align:top;display:block;">Get All Tags</button>
         </form>
+    </div>
+    <div class="aggregations" style="margin:10px;">
+        <label style="vertical-align:top;display:block;">Aggregations</label>
+        <textarea ng-model="render.aggregations" style="height: 250px; width:360px;display:block;" disabled></textarea>
+        <button type="button" ng-click="getAggregations()" style="vertical-align:top;display:block;">Get Aggregations</button>
     </div>
 </div>
 <div class="authorization" style="margin-top:25px;width:850px;">
