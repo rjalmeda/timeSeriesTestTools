@@ -21,6 +21,19 @@ app.controller('queryController', function($scope, $location, $http, queryFactor
             $scope.render.tags = JSON.stringify(data.data.results, null, 2);
         })
     };
+    $scope.submitLatestQuery = function(){
+        if(!$scope.query || !$scope.query.tags){
+            return console.log("no tags dude");
+        };
+        var query = {
+            auth: $scope.auth,
+            query: $scope.query
+        };
+        queryFactory.submitLatestQuery(query, function(data){
+            console.log(data.data);
+            $scope.render.results = JSON.stringify(data.data, null, 2);
+        });
+    };
     $scope.checkToken = function(){
         console.log("check auth");
     };

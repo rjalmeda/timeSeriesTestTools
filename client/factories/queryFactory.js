@@ -24,7 +24,18 @@ app.factory('queryFactory', function($http){
             callback(data)
         });
     };
-    
+    factory.submitLatestQuery = function(query, callback){
+        var config = {
+            headers: {
+                Authorization: "Bearer "+query.auth.access_token,
+                "Predix-Zone-Id": query.auth.predixZoneId,
+                "content-type": "application/json"
+            }
+        };
+        $http.post(query.auth.instanceUri+'/v1/datapoints/latest', query.query, config).then(function(data){
+            callback(data)
+        });
+    };
     factory.getAggregations = function(auth, callback){
         var config = {
             headers: {

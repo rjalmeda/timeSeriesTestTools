@@ -1,0 +1,32 @@
+<h3><a href="#!/index">Ingest</a> | <a href="#!/query">Query</a> | Auth</h3>
+
+
+<h2>Authorization</h2>
+<div class="authInput">
+    <h3>Auth Creds Import</h3>
+    <textarea ng-model="importAuth.blob" style="width:300px;height:300px;"></textarea><br>
+    <button type="button" ng-click="importAuth()">Import Auth</button>
+</div>
+
+<div style="display:inline;width:250px;">
+    <form>
+        <label>UAA: </label><input type="text" ng-model="auth.uaa"><br>
+        <label>Client ID: </label><input type="text" ng-model="auth.clientId"><br>
+        <label>Client Secret: </label><input type="text" ng-model="auth.clientSecret"><br>
+        <label>Instance URI: </label><input type="text" ng-model="auth.instanceUri"><br>
+        <label>Predix Zone ID: </label><input type="text" ng-model="auth.predixZoneId"><br>
+        <label>Access Token: </label><input type="text" ng-model="auth.access_token"><br>
+    </form>
+</div>
+<div class="authControls">
+    <button type="button" ng-click="checkAuth()">Check Auth</button> | <button type="button" ng-click="getToken()">Generate New Token</button>
+</div>
+<div class="statusWindow">
+    <h4>Status Window</h4>
+    <textarea style="width:800px; height: 300px;" ng-model="render.status"></textarea>
+</div>
+
+<div class="newAuth">
+    <h4>New Auth</h4>
+    <textarea style="width:400px; height:400px;" ng-model="render.newAuth" disabled></textarea>
+</div>

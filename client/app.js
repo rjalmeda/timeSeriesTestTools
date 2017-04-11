@@ -9,6 +9,10 @@ app.config(function($routeProvider){
         templateUrl: '/partials/query.html',
         controller: 'queryController'
     })
+    .when('/auth', {
+        templateUrl: '/partials/auth.html',
+        controller: 'authController'
+    })
     .otherwise({
         redirectTo: '/index'
     })

@@ -1,10 +1,12 @@
-<h3><a href="#!/index">Ingest</a> | Query</h3>
+<h3><a href="#!/index">Ingest</a> | Query | <a href="#!/auth">Auth</a></h3>
 
 <div class="resultsContainer" style="width:1200px;height:420px;">
     <div class="resultsWindow" style="min-width:450px;min-height:350px;display:inline-block;">
         <h4>Results</h4>
         <textarea style="min-width:400px;min-height:300px;" ng-model="render.results" disabled></textarea><br>
-        <button type="button" ng-click="submitQuery()">Query</button><button type="button" ng-click="clearQueryResults()">Clear</button>
+        <button type="button" ng-click="submitQuery()">Query Datapoints</button>
+        <button type="button" ng-click="submitLatestQuery()">Query Latest</button>
+        <button type="button" ng-click="clearQueryResults()">Clear</button>
     </div>
     <div class="queryWindow" style="width:220px;height:350px;display:inline-block;">
         <h4>Query</h4>
@@ -18,7 +20,7 @@
 </div>
 <div class="controlsContainer" style="margin-top:25px;">
     <div class="tags" style="margin:10px;">
-        <h4>Tag Search</h4>
+        <h4>Misc Search</h4>
         <form ng-submit="queryTags()">
             <label style="vertical-align:top;display:block;">Tags: </label><textarea ng-model="render.tags" style="min-height:250px;min-width:250px;display:block;" disabled></textarea>
             <button type="button" ng-click="getAllTags()" style="vertical-align:top;display:block;">Get All Tags</button>
@@ -40,7 +42,6 @@
             <label>Instance URI: </label><input type="text" ng-model="auth.instanceUri"><br>
             <label>Predix Zone ID: </label><input type="text" ng-model="auth.predixZoneId"><br>
             <label>Access Token: </label><input type="text" ng-model="auth.access_token"><br>
-            <button type="submit" ng-click="checkToken()" disabled>Check Token</button><button type="button" ng-click="getNewToken()" disabled>Get New Token</button>
     </div>
     <div class="serverJson" style="display:inline;width:480px;">
         <h3>Import Auth Blob</h3>
